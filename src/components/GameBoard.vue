@@ -1,11 +1,19 @@
 <template lang="html">
   <section>
-    <h2>Hello</h2>
+    <app-questions></app-questions>
+    <app-score></app-score>
   </section>
 </template>
 
 <script>
-export default {}
+import Questions from './Questions.vue';
+import Score from './Score.vue';
+export default {
+  components: {
+    'app-questions': Questions,
+    'app-score': Score,
+  }
+}
 </script>
 
 <style lang="scss" scoped>@import ".././main.scss";

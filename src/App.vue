@@ -4,7 +4,6 @@
     <h1>Open Trivia App</h1>
   </header>
 
-  <button @click="currentView === 'app-intro' ? currentView = 'app-game-board' : currentView = 'app-intro'">Change game</button>
   <transition name="fade" mode="out-in">
     <component :is="currentView"></component>
   </transition>
@@ -16,15 +15,17 @@
 import GameBoard from './components/GameBoard.vue';
 import Intro from './components/Intro.vue';
 export default {
-  data() {
-    return {
-      currentView: 'app-intro',
-      running: false,
-    }
-  },
   components: {
     'app-game-board': GameBoard,
     'app-intro': Intro,
+  },
+  computed: {
+    currentView() {
+      return this.$store.state.currentView;
+    },
+    running() {
+      return this.$store.state.running;
+    }
   },
   created() {
     // Fetch categories from open trivia using vue-resource, send to store

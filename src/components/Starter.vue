@@ -1,17 +1,21 @@
 <template lang="html">
   <section>
     <button
-      @click="selectMode(true)"
-      :class="mode ? 'active' : null"
-      >Single Player</button>
+    @click="selectMode(true)"
+    :class="mode ? 'active' : null"
+    >Single Player</button>
     <button
-      @click="selectMode(false)"
-      :class="!mode ? 'active' : null"
-      >Multiplayer</button>
+    @click="selectMode(false)"
+    :class="!mode ? 'active' : null"
+    >Multiplayer</button>
+    <div>
+      <button @click="startGame">Start</button>
+    </div>
     <div class="dropdown" @click="dropdownToggle">
       <h2>Choose Category</h2>
       <ul :class="dropdownClass">
-        <li v-for="category in categories">{{ category.name }}</li>
+        <li>Random (default)</li>
+        <li v-for="category in categories" @click="chooseCategory(category)">{{ category.name }}</li>
       </ul>
     </div>
   </section>
@@ -38,6 +42,10 @@ export default {
     }
   },
   methods: {
+    // Send category data to store, set selected category
+    chooseCategory(category) {
+      this.$store.commit('setCurrentCategory', category);
+    },
     // Toggle animation/display classes for category list
     dropdownToggle() {
       if (this.dropdownClass.open) {
@@ -51,53 +59,59 @@ export default {
     // Call selectMode mutation
     selectMode(mode) {
       this.$store.commit('selectMode', mode);
-    }
+    },
+    startGame() {
+      this.$store.dispatch('startGame');
+    },
   },
 }
 </script>
 
-<style lang="scss" scoped>
-@import ".././main.scss";
+<style lang="scss" scoped>@import ".././main.scss";
 
 h2 {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 ul {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+li {
+    cursor: pointer;
 }
 
 .active {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .close {
-  animation: close 1s ease forwards;
+    animation: close 1s ease forwards;
 }
 
 .open {
-  animation: open 1s ease forwards;
+    animation: open 1s ease forwards;
 }
 @keyframes open {
-  from {
-    max-height: 0;
-    opacity: 0;
-  }
-  to {
-    max-height: 1000px;
-    opacity: 1;
-  }
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 1000px;
+        opacity: 1;
+    }
 }
 @keyframes close {
-  from {
-    max-height: 1000px;
-    opacity: 1;
-  }
-  to {
-    max-height: 0;
-    opacity: 0;
-  }
+    from {
+        max-height: 1000px;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+    }
 }
 </style>
