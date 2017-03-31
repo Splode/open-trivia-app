@@ -5,13 +5,11 @@
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
-<style lang="scss" scoped>
-@import ".././main.scss";
+<style lang="scss" scoped>@import ".././main.scss";
 h2 {
-  color: $color-white;
+    color: $color-white;
 }
 </style>

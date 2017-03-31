@@ -6,3 +6,51 @@ $color-med: #2E79BA;
 $color-white: #FFF;
 $color-green: #2EB872;
 $color-red: #FA4659;
+$back-gradient: linear-gradient(180deg, #2E84E0, #2E6DE0);
+
+body,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+  align-self: center;
+  background-color: $color-white;
+  border: 2px solid $color-med;
+  border-radius: 190px;
+  color: $color-med;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.25em;
+  margin: .5em 0;
+  outline: none;
+  padding: .5em;
+  transition: all 0.25s ease;
+  max-width: 280px;
+  width: 200px;
+  &:disabled, &:disabled:hover {
+    cursor: auto;
+    pointer-events: none;
+  }
+}
+
+button:hover {
+    background-color: $color-med;
+    border: 2px solid $color-med;
+    color: $color-white;
+  }
+
+ul {
+    list-style-type: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
