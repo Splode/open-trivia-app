@@ -31,7 +31,6 @@ export const store = new Vuex.Store({
       } else {
         api = 'https://opentdb.com/api.php?amount=10&category=' + context.state.currentCategory.id;
       }
-      console.log(api);
       Vue.http.get(api)
         .then(response => {
           return response.json();
@@ -49,8 +48,29 @@ export const store = new Vuex.Store({
     round: state => {
       return state.round;
     },
+    // Determine player turn
+    turn: state => {
+      let check = state.round % 2;
+      if (check === 0 || state.round === 0) {
+        return 'playerOne';
+      } else {
+        return 'playerTwo';
+      }
+    },
   },
   mutations: {
+    // Next round
+    incrementRound: state => {
+      state.round += 1;
+    },
+    // Increase player score upon correct answer
+    incrementScore: (state, payload) => {
+      if (payload === 'playerOne') {
+        state.scores.playerOne += 1;
+      } else {
+        state.scores.playerTwo += 1;
+      }
+    },
     // Set game mode from Starter.vue
     selectMode: (state, payload) => {
       payload === true ? state.solo = true : state.solo = false;
@@ -67,9 +87,5 @@ export const store = new Vuex.Store({
       state.currentView = 'app-game-board';
       state.running = true;
     },
-    // Set questions to payload from fetching in startGame action
-    // setQuestions: (state, payload) => {
-    //   state.questions = payload;
-    // }
   }
 });
