@@ -11,8 +11,10 @@
     <div>
       <button @click="startGame">Start</button>
     </div>
+    <!-- Category dropdown selector -->
     <div class="dropdown" @click="dropdownToggle">
       <h2>Choose Category</h2>
+      <h3>{{ currentCategory.name }}</h3>
       <ul :class="dropdownClass">
         <li>Random (default)</li>
         <li v-for="category in categories" @click="chooseCategory(category)">{{ category.name }}</li>
@@ -35,6 +37,9 @@ export default {
     categories() {
       // Return categories from state
       return this.$store.state.categories;
+    },
+    currentCategory() {
+      return this.$store.state.currentCategory;
     },
     mode() {
       // Return mode from state. Used to determine selected button style.

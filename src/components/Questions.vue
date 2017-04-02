@@ -81,8 +81,15 @@ export default {
     },
   },
   methods: {
+    // Reset board, present next question
+    advance() {
+      // Proceed if less than 10 rounds
+      if (this.round <= 8) {
+        this.active = true; // Unpause game state
+        this.$store.commit('incrementRound');
+      }
+    },
     // Resolve answer
-    // IDEA: check should be in answer()
     answer(choice) {
       // Pause game state (effects buttons)
       this.active = false;
@@ -99,14 +106,8 @@ export default {
       } else {
         console.log('incorrect');
       }
-    },
-    // Reset board, present next question
-    advance() {
-      // Proceed if less than 10 rounds
-      if (this.round <= 8) {
-        this.active = true; // Unpause game state
-        this.$store.commit('incrementRound');
-      }
+      // Check if game is over
+      this.$store.commit('isGameOver');
     },
   }
 }

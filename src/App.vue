@@ -1,30 +1,35 @@
 <template>
-<main>
-  <header>
-    <h1>Open Trivia App</h1>
-  </header>
+<div class="container">
+  <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
+  <main>
+    <header>
+      <h1>Open Trivia App</h1>
+    </header>
 
-  <transition name="fade" mode="out-in">
-    <component :is="currentView"></component>
-  </transition>
+    <transition name="fade" mode="out-in">
+      <component :is="currentView"></component>
+    </transition>
 
-</main>
+  </main>
+</div>
 </template>
 
 <script>
 import GameBoard from './components/GameBoard.vue';
+import GameOverModal from './components/GameOverModal.vue';
 import Intro from './components/Intro.vue';
 export default {
   components: {
     'app-game-board': GameBoard,
+    'app-game-over-modal': GameOverModal,
     'app-intro': Intro,
   },
   computed: {
     currentView() {
       return this.$store.state.currentView;
     },
-    running() {
-      return this.$store.state.running;
+    isGameOver() {
+      return this.$store.state.isGameOver;
     }
   },
   created() {
@@ -54,6 +59,10 @@ body {
 
 main {
     animation: fade-in 1.5s ease;
+}
+
+.container {
+  width: 100%;
 }
 @keyframes fade-in {
     from {

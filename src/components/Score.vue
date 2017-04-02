@@ -2,10 +2,10 @@
   <div>
     <h3 v-if="mode">Score: {{ scores.playerOne }}/10</h3>
     <div v-if="!mode">
-    <h3>Player One: {{ scores.playerOne }}</h3>
-    <h3>Player Two: {{ scores.playerTwo }}</h3>
       <h2 v-if="turn === 'playerOne'">Player One Turn</h2>
       <h2 v-if="turn === 'playerTwo'">Player Two Turn</h2>
+      <h3>Player One: {{ scores.playerOne }}</h3>
+      <h3>Player Two: {{ scores.playerTwo }}</h3>
     </div>
   </div>
 </template>

@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
     },
     currentView: 'app-intro',
     questions: [], // current list of questions in game
-    running: false, // game state
+    isGameOver: false, // game state
     round: 0, // round counter, starts at 0, ends at 9. Linked to display of current question
     scores: {
       playerOne: 0,
@@ -32,12 +32,12 @@ export const store = new Vuex.Store({
         api = 'https://opentdb.com/api.php?amount=10&category=' + context.state.currentCategory.id;
       }
       Vue.http.get(api)
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          context.commit('startGame', data.results);
-        });
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        context.commit('startGame', data.results);
+      });
     },
   },
   getters: {
@@ -59,6 +59,12 @@ export const store = new Vuex.Store({
     },
   },
   mutations: {
+    // Set game over and show modal after 10 rounds
+    isGameOver: state => {
+      if (state.round === 9) {
+        state.isGameOver = true;
+      }
+    },
     // Next round
     incrementRound: state => {
       state.round += 1;
@@ -85,7 +91,6 @@ export const store = new Vuex.Store({
       state.questions = payload;
       // Set view to game board
       state.currentView = 'app-game-board';
-      state.running = true;
     },
   }
 });
