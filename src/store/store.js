@@ -77,6 +77,25 @@ export const store = new Vuex.Store({
         state.scores.playerTwo += 1;
       }
     },
+    // Restart game with default state
+    newGame: state => {
+      state.currentCategory.name = 'Random';
+      state.currentCategory.id = 9;
+      state.currentView = 'app-intro';
+      state.isGameOver = false;
+      state.questions = [];
+      state.round = 0;
+      state.scores.playerOne = 0;
+      state.scores.playerTwo = 0;
+      state.solo = true;
+    },
+    rematch: state => {
+      state.isGameOver = false;
+      state.questions = [];
+      state.round = 0;
+      state.scores.playerOne = 0;
+      state.scores.playerTwo = 0;
+    },
     // Set game mode from Starter.vue
     selectMode: (state, payload) => {
       payload === true ? state.solo = true : state.solo = false;

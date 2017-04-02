@@ -3,7 +3,7 @@
     <h3>{{ questions[round].category }}</h3>
     <h2>{{ decoded }}</h2>
     <ul>
-      <li v-for="choice in choices">
+      <li v-for="choice in shuffled">
         <button
         @click="answer(choice)"
         :disabled="choice.disabled"
@@ -109,7 +109,7 @@ export default {
       // Check if game is over
       this.$store.commit('isGameOver');
     },
-  }
+  },
 }
 </script>
 

@@ -10,8 +10,8 @@
         <h1 v-if="scores.playerTwo > scores.playerOne">Player Two Wins!</h1>
         <h1 v-if="scores.playerOne === scores.playerTwo">Draw!</h1>
       </div>
-      <button>New Game</button>
-      <button v-if="!mode">Rematch!</button>
+      <button @click="newGame(true)">New Game</button>
+      <button v-if="!mode" @click="newGame(false)">Rematch!</button>
     </div>
   </div>
 </template>
@@ -24,6 +24,16 @@ export default {
     },
     scores() {
       return this.$store.state.scores;
+    },
+  },
+  methods: {
+    newGame(payload) {
+      if (payload) {
+        this.$store.commit('newGame');
+      } else {
+        this.$store.commit('rematch');
+      }
+      this.$store.dispatch('startGame');
     },
   },
 }

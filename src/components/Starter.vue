@@ -13,7 +13,7 @@
     </div>
     <!-- Category dropdown selector -->
     <div class="dropdown" @click="dropdownToggle">
-      <h2>Choose Category</h2>
+      <h2>Choose Category <i class="material-icons expand">expand_more</i></h2>
       <h3>{{ currentCategory.name }}</h3>
       <ul :class="dropdownClass">
         <li>Random (default)</li>
@@ -88,14 +88,22 @@ li {
     cursor: pointer;
 }
 
+// Selected mode button
 .active {
     text-decoration: underline;
 }
 
+// Close dropdown
 .close {
     animation: close 1s ease forwards;
 }
 
+// Category dropdown expand icon
+.expand {
+  vertical-align: bottom;
+}
+
+// Open dropdown
 .open {
     animation: open 1s ease forwards;
 }
