@@ -28,12 +28,12 @@ export default {
   },
   methods: {
     newGame(payload) {
+      this.$store.commit('resetGame');
       if (payload) {
         this.$store.commit('newGame');
       } else {
-        this.$store.commit('rematch');
+        this.$store.dispatch('startGame');
       }
-      this.$store.dispatch('startGame');
     },
   },
 }

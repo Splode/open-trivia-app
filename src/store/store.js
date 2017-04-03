@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
     currentView: 'app-intro',
     questions: [], // current list of questions in game
     isGameOver: false, // game state
+    isPaused: false,
     round: 0, // round counter, starts at 0, ends at 9. Linked to display of current question
     scores: {
       playerOne: 0,
@@ -82,15 +83,20 @@ export const store = new Vuex.Store({
       state.currentCategory.name = 'Random';
       state.currentCategory.id = 9;
       state.currentView = 'app-intro';
-      state.isGameOver = false;
-      state.questions = [];
-      state.round = 0;
-      state.scores.playerOne = 0;
-      state.scores.playerTwo = 0;
       state.solo = true;
     },
-    rematch: state => {
+    // Pause game state and disable answer buttons after submtting answer
+    pauseGame: (state, payload) => {
+      if (payload === 'pause') {
+        state.isPaused = true;
+      } else {
+        state.isPaused = false;
+      }
+    },
+    // Reset common default game parameters
+    resetGame: state => {
       state.isGameOver = false;
+      state.isPaused = false;
       state.questions = [];
       state.round = 0;
       state.scores.playerOne = 0;
@@ -108,8 +114,50 @@ export const store = new Vuex.Store({
     startGame: (state, payload) => {
       // Set questions to payload from http request in startGame action
       state.questions = payload;
+      // Creatd list of incorrect choices
+      state.questions.forEach(el => {
+        el.choices = el.incorrect_answers.reduce((acc, item) => {
+          acc.push({
+            text: item,
+            answer: false,
+            classes: {
+              incorrect: false
+            }
+          });
+          return acc;
+        }, []);
+        // Add correct answer
+        el.choices.push({
+          text: el.correct_answer,
+          answer: true,
+          classes: {
+            correct: false,
+          }
+        });
+        // Shuffle choices
+        let i = el.choices.length, temp, rand;
+        while (0 !== i) {
+          rand = Math.floor(Math.random() * i);
+          i -= 1;
+          temp = el.choices[i];
+          el.choices[i] = el.choices[rand];
+          el.choices[rand] = temp;
+        }
+
+      });
       // Set view to game board
       state.currentView = 'app-game-board';
     },
+    // Apply classes, which indicate correct or incorrect, to buttons after
+    // submtting answer
+    styleButtons: state => {
+      state.questions[state.round].choices.forEach(el => {
+        if (el.answer) {
+          el.classes = { correct: true }
+        } else {
+          el.classes = { incorrect: true }
+        }
+      });
+    }
   }
 });

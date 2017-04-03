@@ -3,54 +3,29 @@
     <h3>{{ questions[round].category }}</h3>
     <h2>{{ decoded }}</h2>
     <ul>
-      <li v-for="choice in shuffled">
+      <li v-for="choice in choices">
         <button
         @click="answer(choice)"
-        :disabled="choice.disabled"
+        :disabled="isPaused"
         :class="choice.classes">{{ choice.text }}</button>
       </li>
     </ul>
-    <button v-if="!active" @click="advance">Next</button>
+    <button v-if="isPaused" @click="advance">Next</button>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      active: true, // Is game state paused?
-    }
-  },
   computed: {
-    // Compile and shuffle choices for current question
     choices() {
-      // Create array of choice objects, false answers
-      // Object contains class, disabled property bind, text, and id
-      let choices = this.questions[this.round].incorrect_answers.reduce((acc, item) => {
-        acc.push({
-          text: item,
-          answer: false,
-          disabled: !this.active,
-          classes: {
-            incorrect: this.active ? false : true,
-          }
-        });
-        return acc;
-      }, []);
-      // Add correct answer
-      choices.push({
-        text: this.questions[this.round].correct_answer,
-        answer: true,
-        disabled: !this.active,
-        classes: {
-          correct: this.active ? false : true,
-        }
-      });
-      return choices;
+      return this.questions[this.round].choices;
     },
     // Decode HTML entities in question
     decoded() {
       return String(this.questions[this.round].question).replace(/&[#039]*;/g, "'").replace(/&[amp]*;/g, '&').replace(/&[quote]*;/g, '"');
+    },
+    isPaused() {
+      return this.$store.state.isPaused;
     },
     mode() {
       return this.$store.getters.mode;
@@ -63,19 +38,6 @@ export default {
     round() {
       return this.$store.getters.round;
     },
-    shuffled() {
-      // Shuffle choices
-      let choices = this.choices;
-      let i = choices.length, temp, rand;
-      while (0 !== i) {
-        rand = Math.floor(Math.random() * i);
-        i -= 1;
-        temp = choices[i];
-        choices[i] = choices[rand];
-        choices[rand] = temp;
-      }
-      return choices;
-    },
     turn() {
       return this.$store.getters.turn;
     },
@@ -85,14 +47,16 @@ export default {
     advance() {
       // Proceed if less than 10 rounds
       if (this.round <= 8) {
-        this.active = true; // Unpause game state
+        this.$store.commit('pauseGame');
         this.$store.commit('incrementRound');
       }
     },
     // Resolve answer
     answer(choice) {
       // Pause game state (effects buttons)
-      this.active = false;
+      this.$store.commit('pauseGame', 'pause');
+      // Apply button styles for correct / incorrect
+      this.$store.commit('styleButtons');
       // Check for correct answer and score
       let payload;
       if (choice.answer) {
