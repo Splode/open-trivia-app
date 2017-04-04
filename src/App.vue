@@ -58,18 +58,10 @@ body {
 }
 
 main {
-    animation: fade-in 1.5s ease;
+    animation: fade-in 1.5s ease; // defined in main.scss
 }
 
 .container {
   width: 100%;
-}
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 </style>

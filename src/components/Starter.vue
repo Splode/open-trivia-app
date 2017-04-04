@@ -13,10 +13,18 @@
     </div>
     <!-- Category dropdown selector -->
     <div class="dropdown" @click="dropdownToggle">
-      <h2>Choose Category <i class="material-icons expand">expand_more</i></h2>
+      <!-- dropdown label -->
+      <div class="dropdown-label">
+      <h2>Choose Category</h2>
+      <!-- toggle expand icons -->
+      <transition name="fade" mode="out-in">
+        <i class="material-icons expand-more" v-if="toggleExpand" key="expand-more">expand_more</i>
+        <i class="material-icons expand-less" v-else key="expand-less">expand_less</i>
+      </transition>
+    </div>
       <h3>{{ currentCategory.name }}</h3>
       <ul :class="dropdownClass">
-        <li>Random (default)</li>
+        <li @click="chooseCategory({ name: 'Random', id: 9 })">Random (default)</li>
         <li v-for="category in categories" @click="chooseCategory(category)">{{ category.name }}</li>
       </ul>
     </div>
@@ -31,6 +39,7 @@ export default {
         close: false,
         open: false,
       },
+      toggleExpand: true, // toggles expand icons
     }
   },
   computed: {
@@ -53,6 +62,7 @@ export default {
     },
     // Toggle animation/display classes for category list
     dropdownToggle() {
+      this.toggleExpand = !this.toggleExpand;
       if (this.dropdownClass.open) {
         this.dropdownClass.open = false;
         this.dropdownClass.close = true;
@@ -74,7 +84,10 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
-h2 {
+.expand-less,
+.expand-more,
+h2,
+li {
     cursor: pointer;
 }
 
@@ -82,10 +95,6 @@ ul {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-}
-
-li {
-    cursor: pointer;
 }
 
 // Selected mode button
@@ -98,9 +107,22 @@ li {
     animation: close 1s ease forwards;
 }
 
+.dropdown-label {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 // Category dropdown expand icon
-.expand {
-  vertical-align: bottom;
+.expand-less,
+.expand-more {
+    font-size: 2em;
+    padding-top: 10px;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    &:hover {
+        color: $color-green;
+    }
 }
 
 // Open dropdown

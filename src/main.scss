@@ -54,3 +54,21 @@ ul {
 .fade-leave-to {
     opacity: 0;
 }
+
+// Styling for score displays
+.score-high {
+  color: $color-green;
+}
+
+.score-low {
+  color: $color-red;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
