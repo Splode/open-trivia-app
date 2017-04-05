@@ -77,8 +77,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import ".././main.scss";
+
+h3 {
+  color: $color-light;
+}
+
 .correct {
   background-color: $color-green;
   border: 2px solid $color-green;

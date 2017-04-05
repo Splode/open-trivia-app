@@ -51,10 +51,21 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
+button {
+  background-color: $color-med;
+  border: 2px solid $color-med;
+  color: $color-white;
+  &:hover {
+    background-color: $color-white;
+    border: 2px solid $color-med;
+    color: $color-med;
+  }
+}
+
 .container {
   background-color: $color-white;
   border-radius: 25px;
-  color: $color-dark;
+  color: $color-med;
   margin-top: 4em;
   width: 500px;
   //height: 500px;

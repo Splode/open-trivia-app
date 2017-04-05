@@ -91,6 +91,18 @@ li {
     cursor: pointer;
 }
 
+h3 {
+  color: $color-white;
+  margin: 0;
+}
+
+li {
+  margin: .5em 0;
+  &:hover {
+    color: $color-dark;
+  }
+}
+
 ul {
     max-height: 0;
     opacity: 0;
@@ -99,7 +111,9 @@ ul {
 
 // Selected mode button
 .active {
-    text-decoration: underline;
+    background-color: $color-dark;
+    border: 2px solid $color-dark;
+    color: $color-light;
 }
 
 // Close dropdown
@@ -120,9 +134,20 @@ ul {
     padding-top: 10px;
     margin-left: 15px;
     transition: all 0.3s ease;
-    &:hover {
-        color: $color-green;
-    }
+}
+
+.expand-more {
+  color: $color-white;
+  &:hover {
+    color: $color-dark;
+  }
+}
+
+.expand-less {
+  color: $color-dark;
+  &:hover {
+    color: $color-white;
+  }
 }
 
 // Open dropdown

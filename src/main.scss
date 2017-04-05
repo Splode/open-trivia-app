@@ -1,12 +1,13 @@
 @import url( 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900');
 @import url( 'https://fonts.googleapis.com/css?family=Quicksand:400,700');
 @import url( 'https://fonts.googleapis.com/icon?family=Material+Icons');
-$color-dark: #193441;
-$color-med: #2E79BA;
-$color-white: #FFF;
-$color-green: #2EB872;
-$color-red: #FA4659;
-$back-gradient: linear-gradient(180deg, #2E84E0, #2E6DE0);
+$color-dark: #5C6BC0;
+$color-med: #4B8CE8;
+$color-light: #D3EDFE;
+$color-white: whitesmoke;
+$color-green: #5CDB80;
+$color-red: #FF5593;
+$back-gradient: linear-gradient(to top, #4481eb 0%, #04befe 100%);
 
 body,
 ul {
@@ -17,7 +18,8 @@ ul {
 button {
   align-self: center;
   background-color: $color-white;
-  border: 2px solid $color-med;
+  border: 2px solid $color-white;
+  //border: 0;
   border-radius: 190px;
   color: $color-med;
   cursor: pointer;
@@ -28,18 +30,22 @@ button {
   padding: .5em;
   transition: all 0.25s ease;
   max-width: 280px;
-  width: 200px;
+  //width: 200px;
+  width: 100%;
   &:disabled, &:disabled:hover {
     cursor: auto;
     pointer-events: none;
   }
-}
-
-button:hover {
+  &:hover {
     background-color: $color-med;
-    border: 2px solid $color-med;
+    border: 2px solid $color-white;
     color: $color-white;
   }
+}
+
+h2 {
+  font-weight: normal;
+}
 
 ul {
     list-style-type: none;

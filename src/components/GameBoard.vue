@@ -20,4 +20,8 @@ export default {
 h2 {
     color: $color-white;
 }
+
+section {
+  max-width: 600px;
+}
 </style>

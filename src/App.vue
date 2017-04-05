@@ -3,7 +3,7 @@
   <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
   <main>
     <header>
-      <h1>Open Trivia App</h1>
+      <h1 :class="classHeader">Open Trivia App</h1>
     </header>
 
     <transition name="fade" mode="out-in">
@@ -30,6 +30,13 @@ export default {
     },
     isGameOver() {
       return this.$store.state.isGameOver;
+    },
+    classHeader() {
+      let classHeader = {
+        grow: this.currentView === 'app-intro',
+        small: this.currentView !== 'app-intro',
+      }
+      return classHeader;
     }
   },
   created() {
@@ -47,8 +54,8 @@ export default {
 
 <style lang="scss">@import "main.scss";
 body {
-    //background-color: $color-med;
-    background-image: $back-gradient;
+    background-color: $color-med;
+    //background-image: $back-gradient;
     color: $color-white;
     display: flex;
     font-family: 'Quicksand', sans-serif;
@@ -57,11 +64,44 @@ body {
     text-align: center;
 }
 
+header {
+    background-color: $color-white;
+    color: $color-dark;
+    width: 100%;
+}
+
 main {
+    align-items: center;
     animation: fade-in 1.5s ease; // defined in main.scss
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
-  width: 100%;
+    width: 100%;
+}
+
+.grow {
+    animation: grow 0.5s ease forwards;
+}
+
+.small {
+    animation: squeeze 0.5s ease forwards;
+}
+@keyframes grow {
+    from {
+        margin: 0.25em 0;
+    }
+    to {
+        margin: 1em;
+    }
+}
+@keyframes squeeze {
+    from {
+        margin: 1em;
+    }
+    to {
+        margin: 0.25em 0;
+    }
 }
 </style>
