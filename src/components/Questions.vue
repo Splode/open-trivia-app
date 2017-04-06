@@ -77,22 +77,30 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import ".././main.scss";
+<style lang="scss" scoped>@import ".././main.scss";
+
+div {
+    background-color: #0277BD;
+    border-radius: 25px;
+    margin: 2em 0;
+    padding: 1em 2em 4em;
+}
 
 h3 {
-  color: $color-light;
+    color: $color-med;
+    font-size: 1.33em;
+    font-weight: normal;
 }
 
 .correct {
-  background-color: $color-green;
-  border: 2px solid $color-green;
-  color: $color-white;
+    background-color: $color-green;
+    border: 2px solid $color-green;
+    color: $color-white;
 }
 
 .incorrect {
-  background-color: $color-red;
-  border: 2px solid $color-red;
-  color: $color-white;
+    background-color: $color-red;
+    border: 2px solid $color-red;
+    color: $color-white;
 }
 </style>

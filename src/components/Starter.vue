@@ -92,14 +92,17 @@ li {
 }
 
 h3 {
-  color: $color-white;
+  color: $color-darkest;
   margin: 0;
 }
 
 li {
   margin: .5em 0;
+  transition: all .3s ease;
   &:hover {
-    color: $color-dark;
+    color: $color-white;
+    //font-size: 1.5em;
+    transform: scale(1.5);
   }
 }
 
@@ -111,9 +114,9 @@ ul {
 
 // Selected mode button
 .active {
-    background-color: $color-dark;
-    border: 2px solid $color-dark;
-    color: $color-light;
+    background-color: $color-med;
+    border: 2px solid $color-med;
+    color: $color-white;
 }
 
 // Close dropdown
@@ -139,12 +142,12 @@ ul {
 .expand-more {
   color: $color-white;
   &:hover {
-    color: $color-dark;
+    color: $color-darkest;
   }
 }
 
 .expand-less {
-  color: $color-dark;
+  color: $color-darkest;
   &:hover {
     color: $color-white;
   }

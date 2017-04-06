@@ -3,7 +3,7 @@
   <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
   <main>
     <header>
-      <h1 :class="classHeader">Open Trivia App</h1>
+      <h1 :class="classHeader">Convivial Trivia</h1>
     </header>
 
     <transition name="fade" mode="out-in">
@@ -54,7 +54,7 @@ export default {
 
 <style lang="scss">@import "main.scss";
 body {
-    background-color: $color-med;
+    background-color: $color-dark;
     //background-image: $back-gradient;
     color: $color-white;
     display: flex;
@@ -65,8 +65,8 @@ body {
 }
 
 header {
-    background-color: $color-white;
-    color: $color-dark;
+    background-color: $color-darkest;
+    color: $color-white;
     width: 100%;
 }
 

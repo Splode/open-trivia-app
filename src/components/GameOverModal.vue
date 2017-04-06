@@ -4,6 +4,7 @@
       <div v-if="mode">
         <h1>Game Over!</h1>
         <h2>Score: {{ scores.playerOne }}/10</h2>
+        <p>You could do better. Time to brush up your trivia!</p>
       </div>
       <div v-if="!mode">
         <h1 v-if="scores.playerOne > scores.playerTwo">Player One Wins!</h1>

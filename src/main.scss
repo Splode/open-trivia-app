@@ -1,9 +1,11 @@
 @import url( 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900');
 @import url( 'https://fonts.googleapis.com/css?family=Quicksand:400,700');
 @import url( 'https://fonts.googleapis.com/icon?family=Material+Icons');
-$color-dark: #5C6BC0;
-$color-med: #4B8CE8;
-$color-light: #D3EDFE;
+$color-darkest: #0277BD;
+$color-dark: #03A9F4;
+$color-med: #4FC3F7;
+$color-light: #0097A7;
+$color-blue-green-light: #E0F7FA;
 $color-white: whitesmoke;
 $color-green: #5CDB80;
 $color-red: #FF5593;
@@ -21,15 +23,15 @@ button {
   border: 2px solid $color-white;
   //border: 0;
   border-radius: 190px;
-  color: $color-med;
+  color: $color-darkest;
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
   font-size: 1.25em;
   margin: .5em 0;
   outline: none;
-  padding: .5em;
+  padding: 1em;
   transition: all 0.25s ease;
-  max-width: 280px;
+  max-width: 400px;
   //width: 200px;
   width: 100%;
   &:disabled, &:disabled:hover {
@@ -38,7 +40,7 @@ button {
   }
   &:hover {
     background-color: $color-med;
-    border: 2px solid $color-white;
+    border: 2px solid $color-med;
     color: $color-white;
   }
 }

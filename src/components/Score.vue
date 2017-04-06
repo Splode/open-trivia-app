@@ -29,4 +29,18 @@ export default {
 }
 </script>
 
-<style lang="scss">@import ".././main.scss";</style>
+<style lang="scss" scoped>
+@import ".././main.scss";
+
+div {
+  background-color: $color-white;
+  border-radius: 25px;
+  padding: 1em 0;
+  color: #03A9F4;
+}
+
+h3 {
+  color: $color-darkest;
+  font-weight: bold;
+}
+</style>
