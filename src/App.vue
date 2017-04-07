@@ -3,7 +3,7 @@
   <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
   <main>
     <header>
-      <h1 :class="classHeader">Convivial Trivia</h1>
+      <h1 :class="classHeader">Winsome Trivia</h1>
     </header>
 
     <transition name="fade" mode="out-in">
