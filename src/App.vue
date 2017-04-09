@@ -8,6 +8,7 @@
 
     <transition name="fade" mode="out-in">
       <component :is="currentView"></component>
+      <!-- <app-loader></app-loader> -->
     </transition>
 
   </main>
@@ -77,7 +78,8 @@ main {
     animation: fade-in 1.5s ease; // defined in main.scss
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    height: 100%;
 }
 
 .container {

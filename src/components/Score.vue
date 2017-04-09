@@ -33,10 +33,13 @@ export default {
 @import ".././main.scss";
 
 div {
-  background-color: $color-white;
+  background-color: $color-med;
   border-radius: 25px;
   padding: 1em 0;
-  color: #03A9F4;
+}
+
+h2 {
+  color: $color-white;
 }
 
 h3 {

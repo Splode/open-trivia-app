@@ -27,7 +27,6 @@ export default {
 .droplet-container {
   display: flex;
   flex-direction: row;
-  //position: relative;
 }
 
 .droplet {
