@@ -18,11 +18,13 @@
 import GameBoard from './components/GameBoard.vue';
 import GameOverModal from './components/GameOverModal.vue';
 import Intro from './components/Intro.vue';
+import Loader from './components/Loader.vue';
 export default {
   components: {
     'app-game-board': GameBoard,
     'app-game-over-modal': GameOverModal,
     'app-intro': Intro,
+    'app-loader': Loader,
   },
   computed: {
     currentView() {
@@ -75,6 +77,7 @@ main {
     animation: fade-in 1.5s ease; // defined in main.scss
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .container {

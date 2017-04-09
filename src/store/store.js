@@ -24,6 +24,7 @@ export const store = new Vuex.Store({
   actions: {
     // Called by Starter.vue.
     startGame(context) {
+      context.state.currentView = 'app-loader';
       // Fetch batch of questions for specific category
       let api;
       // Determine if random (default) or chosen category
