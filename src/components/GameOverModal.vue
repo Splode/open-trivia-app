@@ -52,23 +52,44 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
-button {
-  background-color: $color-med;
-  border: 2px solid $color-med;
-  color: $color-white;
-  &:hover {
+@media (hover:hover) {
+  button:hover {
     background-color: $color-white;
     border: 2px solid $color-med;
     color: $color-med;
   }
 }
 
+@media (min-width: 600px) {
+  .container {
+    border-radius: 25px;
+    width: 500px;
+  }
+}
+
+button {
+  background-color: $color-med;
+  border: 2px solid $color-med;
+  color: $color-white;
+  width: 90%;
+  &:last-child {
+    margin-bottom: 2em;
+  }
+}
+
+h1 {
+  color: $color-darkest;
+}
+
+h2, p {
+  color: $color-dark;
+}
+
 .container {
   background-color: $color-white;
-  border-radius: 25px;
   color: $color-med;
   margin-top: 4em;
-  width: 500px;
+  padding: 0 2.5%;
   //height: 500px;
 }
 

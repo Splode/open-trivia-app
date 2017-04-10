@@ -32,14 +32,20 @@ export default {
 <style lang="scss" scoped>
 @import ".././main.scss";
 
+@media (min-width: 600px) {
+  div {
+    border-radius: 25px;
+  }
+}
+
 div {
   background-color: $color-med;
-  border-radius: 25px;
-  padding: 1em 0;
+  padding: 0.25em 0;
 }
 
 h2 {
   color: $color-white;
+  font-weight: bold;
 }
 
 h3 {

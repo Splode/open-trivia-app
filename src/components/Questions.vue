@@ -79,17 +79,22 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
+@media (min-width: 600px) {
+  div {
+    border-radius: 25px;
+    min-width: 320px;
+  }
+}
+
 div {
     background-color: #0277BD;
-    border-radius: 25px;
     margin: 2em 0;
     padding: 1em 2em 4em;
 }
 
 h3 {
     color: $color-med;
-    font-size: 1.33em;
-    font-weight: normal;
+    font-size: 2.33
 }
 
 .correct {

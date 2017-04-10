@@ -4,12 +4,18 @@
 $color-darkest: #0277BD;
 $color-dark: #03A9F4;
 $color-med: #4FC3F7;
-$color-light: #0097A7;
-$color-blue-green-light: #E0F7FA;
 $color-white: whitesmoke;
 $color-green: #5CDB80;
 $color-red: #FF5593;
 $back-gradient: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+
+@media (hover:hover) {
+  button:hover, button:active {
+    background-color: $color-med;
+    border: 2px solid $color-med;
+    color: $color-white;
+  }
+}
 
 body,
 ul {
@@ -38,11 +44,11 @@ button {
     cursor: auto;
     pointer-events: none;
   }
-  &:hover, &:active {
-    background-color: $color-med;
-    border: 2px solid $color-med;
-    color: $color-white;
-  }
+  // &:hover, &:active {
+  //   background-color: $color-med;
+  //   border: 2px solid $color-med;
+  //   color: $color-white;
+  // }
 }
 
 h2 {

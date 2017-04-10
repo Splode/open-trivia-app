@@ -84,6 +84,12 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
+@media (max-width: 600px) {
+  section {
+    padding: 0 2.5%;
+  }
+}
+
 .expand-less,
 .expand-more,
 h2,
