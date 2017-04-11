@@ -1,13 +1,13 @@
 <template lang="html">
   <div>
     <h3>{{ questions[round].category }}</h3>
-    <h2>{{ decoded }}</h2>
+    <h2>{{ decodedQuestion }}</h2>
     <ul>
       <li v-for="choice in choices">
         <button
         @click="answer(choice)"
         :disabled="isPaused"
-        :class="choice.classes">{{ choice.text }}</button>
+        :class="choice.classes">{{ decode(choice.text) }}</button>
       </li>
     </ul>
     <button v-if="isPaused" @click="advance">Next</button>
@@ -15,14 +15,17 @@
 </template>
 
 <script>
+import { htmlEntity } from '.././htmlEntityMixin';
+
 export default {
+  mixins: [htmlEntity],
   computed: {
     choices() {
       return this.questions[this.round].choices;
     },
-    // Decode HTML entities in question
-    decoded() {
-      return String(this.questions[this.round].question).replace(/&[#039]*;/g, "'").replace(/&[amp]*;/g, '&').replace(/&[quote]*;/g, '"');
+    // Decode HTML entities in question. Based on htmlEntity mixin
+    decodedQuestion() {
+      return this.decode(this.questions[this.round].question);
     },
     isPaused() {
       return this.$store.state.isPaused;
@@ -41,6 +44,9 @@ export default {
     turn() {
       return this.$store.getters.turn;
     },
+    test() {
+      return this.decode('&amp;');
+    }
   },
   methods: {
     // Reset board, present next question

@@ -36,6 +36,7 @@ export default {
     scores() {
       return this.$store.state.scores;
     },
+    // TODO: award message
   },
   methods: {
     newGame(payload) {
@@ -77,11 +78,11 @@ button {
   }
 }
 
-h1 {
+h1, p {
   color: $color-darkest;
 }
 
-h2, p {
+h2 {
   color: $color-dark;
 }
 

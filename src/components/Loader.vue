@@ -19,6 +19,9 @@ export default {
 <style lang="scss" scoped>
 @import ".././main.scss";
 
+@media (max-width: 600px) {
+}
+
 @mixin drop($delay) {
   animation: drop-in 1s ease infinite;
   animation-delay: $delay;
@@ -78,9 +81,11 @@ export default {
 }
 
 .wrapper {
-  display: flex;
   align-items: center;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh; // NOTE: iOS browsers require explicit height
 }
 
 @keyframes drop-in {
