@@ -4,7 +4,7 @@
       <div v-if="mode">
         <h1>Game Over!</h1>
         <h2>Score: {{ scores.playerOne }}/10</h2>
-        <p>You could do better. Time to brush up your trivia!</p>
+        <p>{{ scoreMessage }}</p>
       </div>
       <div v-if="!mode">
         <h1 v-if="scores.playerOne > scores.playerTwo">Player One Wins!</h1>
@@ -21,14 +21,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      modalClasses: {
-        'slide-in': true,
-        'slide-out': false,
-      }
-    }
-  },
   computed: {
     mode() {
       return this.$store.getters.mode;
@@ -36,7 +28,28 @@ export default {
     scores() {
       return this.$store.state.scores;
     },
-    // TODO: award message
+    // Award message for solo mode
+    scoreMessage() {
+      const cases = {
+        0: "Ouch. Well, at least you can't go down from here.",
+        1: 'Time to brush up on your trivia game.',
+        2: 'Were you just guessing?',
+        3: "Google is your friend. Consider it today's Encyclopedia Britannica.",
+        4: "Don't worry — a 4/10 is average.",
+        5: 'So-so performance. Not bad. Not great. Maybe better luck next time.',
+        6: 'You may one day be a wealth of trivial knowledge. Just not today.',
+        7: 'Not bad. Can you perform this well a second time?',
+        8: "You're on your way to becoming a trivia master.",
+        9: 'A regular trivia wiz. Nice work.',
+        10: 'Holy snikes!! A perfect score! Excellent work.',
+      };
+      let score = this.scores.playerOne;
+      if (score) {
+        return cases[score];
+      } else {
+        return '';
+      }
+    }
   },
   methods: {
     newGame(payload) {

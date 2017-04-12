@@ -1,5 +1,6 @@
 <template>
-<div class="container">
+  <!-- starPower hack for proper animation display on style binding -->
+<div class="container" :style="starPower">
   <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
   <main>
     <header>
@@ -34,13 +35,19 @@ export default {
     isGameOver() {
       return this.$store.state.isGameOver;
     },
+    // Expand and contract header when changing game state
     classHeader() {
       let classHeader = {
         grow: this.currentView === 'app-intro',
         small: this.currentView !== 'app-intro',
       }
       return classHeader;
-    }
+    },
+    // HACK: set overflow to hidden on primary page container for correct answer animation.
+    // Linked to StarPower.vue and starPower state
+    starPower() {
+      return this.$store.state.starPower ? 'overflow: hidden' : 'overflow: inherit';
+    },
   },
   created() {
     // Fetch categories from open trivia using vue-resource, send to store

@@ -44,9 +44,6 @@ export default {
     turn() {
       return this.$store.getters.turn;
     },
-    test() {
-      return this.decode('&amp;');
-    }
   },
   methods: {
     // Reset board, present next question
@@ -73,6 +70,7 @@ export default {
         }
         // Increase score if correct
         this.$store.commit('incrementScore', payload);
+        this.$store.dispatch('starPower');
       } else {
         console.log('incorrect');
       }

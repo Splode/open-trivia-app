@@ -10,7 +10,10 @@ export const htmlEntity = {
       .replace(/&[percnt]*;/g, '%')
       .replace(/&[divide]*;/g, '÷')
       .replace(/&[div]*;/g, '÷')
-      .replace(/&[aacute]*;/g, 'á')
+      .replace(/&[sup2]*;/g, '²')
+      .replace(/&[deg]*;/g, '°')
+      // FIXME: regex matching 'eacute'
+      // .replace(/&[aacute]*;/g, 'á')
       .replace(/&[eacute]*;/g, 'é')
       .replace(/&[iacute]*;/g, 'í')
       .replace(/&[ntilde]*;/g, 'ñ')
@@ -23,6 +26,7 @@ export const htmlEntity = {
       .replace(/&[uuml]*;/g, 'ü')
       .replace(/&[yuml]*;/g, 'ÿ')
       .replace(/&[uuml]*;/g, 'ü')
+      .replace(/&[scaron]*;/g, 'š')
     }
   }
 }

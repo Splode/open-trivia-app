@@ -20,8 +20,17 @@ export const store = new Vuex.Store({
       playerTwo: 0,
     },
     solo: true, // Game mode, solo or multiplayer?
+    starPower: false, // show starPower animation
   },
   actions: {
+    // Call starPower mutation and set delay toggle
+    starPower(context) {
+      context.commit('starPower');
+      let vm = context;
+      setTimeout(() => {
+        vm.state.starPower = false;
+      }, 1600);
+    },
     // Called by Starter.vue.
     startGame(context) {
       context.state.currentView = 'app-loader';
@@ -111,6 +120,10 @@ export const store = new Vuex.Store({
     setCurrentCategory: (state, payload) => {
       state.currentCategory.name = payload.name;
       state.currentCategory.id = payload.id;
+    },
+    // Call starPower
+    starPower: (state) => {
+      state.starPower = true;
     },
     startGame: (state, payload) => {
       // Set questions to payload from http request in startGame action
