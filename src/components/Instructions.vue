@@ -8,4 +8,10 @@
 export default {}
 </script>
 
-<style lang="scss">@import ".././main.scss";</style>
+<style lang="scss" scoped>
+@import ".././main.scss";
+
+div {
+  padding: 0 2em;
+}
+</style>

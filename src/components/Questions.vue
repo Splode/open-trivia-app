@@ -83,17 +83,19 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
+// Desktop
 @media (min-width: 600px) {
   div {
     border-radius: 25px;
     min-width: 320px;
+    padding: 1em 2em 4em;
   }
 }
 
 div {
     background-color: #0277BD;
-    margin: 2em 0;
-    padding: 1em 2em 4em;
+    margin-bottom: 2em;
+    padding: 1em 1em 4em;
 }
 
 h3 {

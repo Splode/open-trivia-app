@@ -27,6 +27,8 @@ export const htmlEntity = {
       .replace(/&[yuml]*;/g, 'ÿ')
       .replace(/&[uuml]*;/g, 'ü')
       .replace(/&[scaron]*;/g, 'š')
+      .replace(/&[epsilon]*;/g, 'ε')
+      .replace(/&[Phi]*;/g, 'φ')
     }
   }
 }

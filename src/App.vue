@@ -3,8 +3,8 @@
 <div class="container" :style="starPower">
   <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
   <main>
-    <header>
-      <h1 :class="classHeader">Winsome Trivia</h1>
+    <header :class="classHeader">
+      <h1>Winsome Trivia</h1>
     </header>
 
     <transition name="fade" mode="out-in">
@@ -64,8 +64,9 @@ export default {
 
 <style lang="scss">@import "main.scss";
 body {
-    background-color: $color-dark;
-    //background-image: $back-gradient;
+    background-color: #4481eb;
+    background-image: $back-gradient;
+    background-repeat: no-repeat;
     color: $color-white;
     display: flex;
     font-family: 'Quicksand', sans-serif;
@@ -75,9 +76,13 @@ body {
 }
 
 header {
-    background-color: $color-darkest;
+    //background-color: $color-darkest;
     color: $color-white;
-    width: 100%;
+    //width: 100%;
+}
+
+h1 {
+  margin: 0;
 }
 
 main {
@@ -95,25 +100,29 @@ main {
 
 .grow {
     animation: grow 0.5s ease forwards;
+    //background-color: $color-dark;
 }
 
 .small {
     animation: squeeze 0.5s ease forwards;
+    //background-color: $color-darkest;
 }
 @keyframes grow {
     from {
-        margin: 0.25em 0;
+        padding: 0.25em 0;
     }
     to {
-        margin: 1em;
+        padding: 1em;
     }
 }
 @keyframes squeeze {
     from {
-        margin: 1em;
+      font-size: 1em;
+        padding: 1em;
     }
     to {
-        margin: 0.25em 0;
+        font-size: .75em;
+        padding: 0.5em 0;
     }
 }
 </style>

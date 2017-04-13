@@ -74,9 +74,14 @@ export default {
   }
 }
 
+@media (max-width: 600px) {
+  .container {
+    width: 85%;
+  }
+}
+
 @media (min-width: 600px) {
   .container {
-    border-radius: 25px;
     width: 500px;
   }
 }
@@ -87,7 +92,7 @@ button {
   color: $color-white;
   width: 90%;
   &:last-child {
-    margin-bottom: 2em;
+    //margin-bottom: 2em;
   }
 }
 
@@ -101,9 +106,10 @@ h2 {
 
 .container {
   background-color: $color-white;
+  border-radius: 25px;
   color: $color-med;
   margin-top: 4em;
-  padding: 0 2.5%;
+  padding: 2em 2.5%;
   //height: 500px;
 }
 

@@ -98,7 +98,7 @@ li {
 }
 
 h3 {
-  color: $color-darkest;
+  color: $color-white;
   margin: 0;
 }
 
@@ -140,7 +140,7 @@ ul {
 .expand-less,
 .expand-more {
     font-size: 2em;
-    padding-top: 10px;
+    padding-top: 7px;
     margin-left: 15px;
     transition: all 0.3s ease;
 }
