@@ -8,8 +8,8 @@
     </header>
 
     <transition name="fade" mode="out-in">
-      <!-- <component :is="currentView"></component> -->
-      <app-loader></app-loader>
+      <component :is="currentView"></component>
+      <!-- <app-loader></app-loader> -->
     </transition>
 
   </main>
