@@ -8,8 +8,8 @@
     </header>
 
     <transition name="fade" mode="out-in">
-      <component :is="currentView"></component>
-      <!-- <app-loader></app-loader> -->
+      <!-- <component :is="currentView"></component> -->
+      <app-loader></app-loader>
     </transition>
 
   </main>
@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style lang="scss">@import "main.scss";
+
+$header-shrink-scale: .66;
+
 body {
     background-color: #4481eb;
     background-image: $back-gradient;
@@ -78,10 +81,11 @@ body {
 header {
     //background-color: $color-darkest;
     color: $color-white;
+    transform: scale(1);
     //width: 100%;
 }
 
-h1 {
+h1, p {
   margin: 0;
 }
 
@@ -109,19 +113,21 @@ main {
 }
 @keyframes grow {
     from {
+        transform: scale($header-shrink-scale);
         padding: 0.25em 0;
     }
     to {
+      transform: scale(1);
         padding: 1em;
     }
 }
 @keyframes squeeze {
     from {
-      font-size: 1em;
+      transform: scale(1);
         padding: 1em;
     }
     to {
-        font-size: .75em;
+        transform: scale($header-shrink-scale);
         padding: 0.5em 0;
     }
 }

@@ -13,5 +13,6 @@ export default {}
 
 div {
   padding: 0 2em;
+  margin: 0 0 1em 0;
 }
 </style>
