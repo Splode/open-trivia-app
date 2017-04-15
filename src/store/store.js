@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    aboutShow: false,
     categories: [], // trivia categories
     currentCategory: { // chosen category
       name: 'Random',
@@ -22,6 +23,7 @@ export const store = new Vuex.Store({
     solo: true, // Game mode, solo or multiplayer?
     starPower: false, // show starPower animation
   },
+  // =============== ACTIONS ===============
   actions: {
     // Call starPower mutation and set delay toggle
     starPower(context) {
@@ -51,6 +53,7 @@ export const store = new Vuex.Store({
       });
     },
   },
+  // ========== GETTERS ============
   getters: {
     // Get solo or multiplayer
     mode: state => {
@@ -69,7 +72,12 @@ export const store = new Vuex.Store({
       }
     },
   },
+  // ============ MUTATIONS ===============
   mutations: {
+    // Toggle display of about menu
+    aboutToggle: state => {
+      state.aboutShow = !state.aboutShow;
+    },
     // Set game over and show modal after 10 rounds
     isGameOver: state => {
       if (state.round === 9) {
@@ -128,7 +136,7 @@ export const store = new Vuex.Store({
     startGame: (state, payload) => {
       // Set questions to payload from http request in startGame action
       state.questions = payload;
-      // Creatd list of incorrect choices
+      // Create list of incorrect choices
       state.questions.forEach(el => {
         el.choices = el.incorrect_answers.reduce((acc, item) => {
           acc.push({

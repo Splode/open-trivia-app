@@ -91,8 +91,8 @@ button {
   border: 2px solid $color-med;
   color: $color-white;
   width: 90%;
-  &:last-child {
-    //margin-bottom: 2em;
+  &:first-child {
+    margin-top: 2em;
   }
 }
 

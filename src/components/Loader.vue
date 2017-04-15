@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="wrapper">
+  <div class="wrapper flex-center-col">
     <div class="droplet-container">
       <i class="droplet" v-for="drop in quantity"></i>
     </div>
@@ -139,10 +139,10 @@ export default {
 }
 
 .wrapper {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
   height: 80vh; // NOTE: iOS browsers require explicit height
 }
 @keyframes drop-in {

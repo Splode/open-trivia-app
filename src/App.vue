@@ -2,11 +2,24 @@
   <!-- starPower hack for proper animation display on style binding -->
 <div class="container" :style="starPower">
   <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
+
+  <div class="about-button" @click="aboutToggle">
+    <transition name="fade" mode="out-in">
+    <i class="material-icons icon-menu" v-if="!aboutShow" key="menu">menu</i>
+    <i class="material-icons icon-close" v-else key="close">close</i>
+  </transition>
+  </div>
+
   <main>
     <header :class="classHeader">
       <h1>Winsome Trivia</h1>
     </header>
 
+    <transition name="expand" mode="out-in">
+    <app-about v-if="aboutShow"></app-about>
+  </transition>
+
+    <!-- Primary page components -->
     <transition name="fade" mode="out-in">
       <component :is="currentView"></component>
       <!-- <app-loader></app-loader> -->
@@ -17,18 +30,24 @@
 </template>
 
 <script>
+import About from './components/About.vue';
 import GameBoard from './components/GameBoard.vue';
 import GameOverModal from './components/GameOverModal.vue';
 import Intro from './components/Intro.vue';
 import Loader from './components/Loader.vue';
 export default {
   components: {
+    'app-about': About,
     'app-game-board': GameBoard,
     'app-game-over-modal': GameOverModal,
     'app-intro': Intro,
     'app-loader': Loader,
   },
+
   computed: {
+    aboutShow() {
+      return this.$store.state.aboutShow;
+    },
     currentView() {
       return this.$store.state.currentView;
     },
@@ -49,6 +68,13 @@ export default {
       return this.$store.state.starPower ? 'overflow: hidden' : 'overflow: inherit';
     },
   },
+
+  methods: {
+    aboutToggle() {
+      this.$store.commit('aboutToggle');
+    }
+  },
+
   created() {
     // Fetch categories from open trivia using vue-resource, send to store
     this.$http.get('https://opentdb.com/api_category.php')
@@ -65,6 +91,12 @@ export default {
 <style lang="scss">@import "main.scss";
 
 $header-shrink-scale: .66;
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.75em;
+  }
+}
 
 body {
     background-color: #4481eb;
@@ -98,8 +130,32 @@ main {
     height: 100%;
 }
 
+.about-button {
+  align-items: center;
+  background-color: $color-darkest;
+  border: 2px solid $color-med;
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  right: .5em;
+  top: .25em;
+  width: 40px;
+  height: 40px;
+  z-index: 1000;
+}
+
 .container {
     width: 100%;
+}
+
+.icon-menu, .icon-close {
+  transition: all .3s ease;
+
+  &:hover {
+    color: $color-med;
+  }
 }
 
 .grow {
@@ -130,5 +186,13 @@ main {
         transform: scale($header-shrink-scale);
         padding: 0.5em 0;
     }
+}
+
+.expand-enter-active {
+  animation: open .75s ease forwards;
+}
+
+.expand-leave-active {
+  animation: close .5s ease forwards;
 }
 </style>

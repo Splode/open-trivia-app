@@ -4,6 +4,8 @@
 $color-darkest: #0277BD;
 $color-dark: #03A9F4;
 $color-med: #4FC3F7;
+$color-alt-dark: #5C6BC0;
+$color-alt-med: #7986CB;
 $color-white: whitesmoke;
 $color-green: #5CDB80;
 $color-red: #FF5593;
@@ -21,6 +23,46 @@ body,
 ul {
     margin: 0;
     padding: 0;
+}
+
+a, a.link-light, a.link-dark {
+  color: inherit;
+  position: relative;
+  text-decoration: none;
+  transition: all .3s ease;
+
+  &::before {
+    bottom: -2px;
+    right: 0;
+    content: '';
+    position: absolute;
+    transform: scale(1);
+    transition: all .3s ease;
+    width: 100%;
+    height: 2px;
+  }
+
+  &:hover::before {
+    transform: scale(0);
+  }
+}
+
+a.link-light {
+  &:hover {
+    color: $color-med;
+  }
+  &::before {
+    background-color: $color-white;
+  }
+}
+
+a.link-dark {
+  &:hover {
+    color: $color-white;
+  }
+  &::before {
+    background-color: $color-med;
+  }
 }
 
 button {
@@ -54,6 +96,13 @@ ul {
     list-style-type: none;
 }
 
+.flex-center-col {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: all 0.3s ease;
@@ -79,5 +128,31 @@ ul {
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes open {
+    from {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+    }
+    to {
+        max-height: 1000px;
+        opacity: 1;
+        margin-bottom: 2em;
+    }
+}
+
+@keyframes close {
+    from {
+        max-height: 1000px;
+        opacity: 1;
+        margin-bottom: 2em;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0;
     }
 }

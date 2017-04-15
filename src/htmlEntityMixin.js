@@ -13,6 +13,8 @@ export const htmlEntity = {
       .replace(/&[percnt]*;/g, '%')
       .replace(/&[divide]*;/g, '÷')
       .replace(/&[div]*;/g, '÷')
+      .replace(/&[lt]*;/g, '<')
+      .replace(/&[gt]*;/g, '>')
       .replace(/&[sup2]*;/g, '²')
       .replace(/&[deg]*;/g, '°')
       // FIXME: regex matching 'eacute'

@@ -1,5 +1,5 @@
 <template lang="html">
-  <section>
+  <section class="flex-center-col">
     <button
     @click="selectMode(true)"
     :class="mode ? 'active' : null"
@@ -8,20 +8,19 @@
     @click="selectMode(false)"
     :class="!mode ? 'active' : null"
     >Multiplayer</button>
-    <div>
-      <button @click="startGame">Start</button>
-    </div>
+    <button @click="startGame">Start</button>
+
     <!-- Category dropdown selector -->
     <div class="dropdown" @click="dropdownToggle">
       <!-- dropdown label -->
       <div class="dropdown-label">
-      <h2>Choose Category</h2>
-      <!-- toggle expand icons -->
-      <transition name="fade" mode="out-in">
-        <i class="material-icons expand-more" v-if="toggleExpand" key="expand-more">expand_more</i>
-        <i class="material-icons expand-less" v-else key="expand-less">expand_less</i>
-      </transition>
-    </div>
+        <h2>Choose Category</h2>
+        <!-- toggle expand icons -->
+        <transition name="fade" mode="out-in">
+          <i class="material-icons expand-more" v-if="toggleExpand" key="expand-more">expand_more</i>
+          <i class="material-icons expand-less" v-else key="expand-less">expand_less</i>
+        </transition>
+      </div>
       <h3>{{ currentCategory.name }}</h3>
       <ul :class="dropdownClass">
         <li @click="chooseCategory({ name: 'Random', id: 9 })">Random (default)</li>
@@ -43,6 +42,9 @@ export default {
     }
   },
   computed: {
+    aboutShow() {
+      return this.$store.state.aboutShow;
+    },
     categories() {
       // Return categories from state
       return this.$store.state.categories;
@@ -77,17 +79,20 @@ export default {
     },
     startGame() {
       this.$store.dispatch('startGame');
+      // Close About menu if open
+      if (this.aboutShow) {
+        this.$store.commit('aboutToggle');
+      }
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>@import ".././main.scss";
-
 @media (max-width: 600px) {
-  section {
-    padding: 0 2.5%;
-  }
+    section {
+        padding: 0 2.5%;
+    }
 }
 
 .expand-less,
@@ -98,18 +103,18 @@ li {
 }
 
 h3 {
-  color: $color-white;
-  margin: 0;
+    color: $color-white;
+    margin: 0;
 }
 
 li {
-  margin: .5em 0;
-  transition: all .3s ease;
-  &:hover {
-    color: $color-white;
-    //font-size: 1.5em;
-    transform: scale(1.5);
-  }
+    margin: 0.5em 0;
+    transition: all 0.3s ease;
+    &:hover {
+        color: $color-white;
+        //font-size: 1.5em;
+        transform: scale(1.5);
+    }
 }
 
 ul {
@@ -120,14 +125,9 @@ ul {
 
 // Selected mode button
 .active {
-    background-color: $color-med;
-    border: 2px solid $color-med;
+    background-color: $color-darkest;
+    border: 2px solid $color-darkest;
     color: $color-white;
-}
-
-// Close dropdown
-.close {
-    animation: close 1s ease forwards;
 }
 
 .dropdown-label {
@@ -146,41 +146,26 @@ ul {
 }
 
 .expand-more {
-  color: $color-white;
-  &:hover {
-    color: $color-darkest;
-  }
+    color: $color-white;
+    &:hover {
+        color: $color-darkest;
+    }
 }
 
 .expand-less {
-  color: $color-darkest;
-  &:hover {
-    color: $color-white;
-  }
+    color: $color-darkest;
+    &:hover {
+        color: $color-white;
+    }
 }
 
 // Open dropdown
 .open {
     animation: open 1s ease forwards;
 }
-@keyframes open {
-    from {
-        max-height: 0;
-        opacity: 0;
-    }
-    to {
-        max-height: 1000px;
-        opacity: 1;
-    }
-}
-@keyframes close {
-    from {
-        max-height: 1000px;
-        opacity: 1;
-    }
-    to {
-        max-height: 0;
-        opacity: 0;
-    }
+
+// Close dropdown
+.close {
+    animation: close 1s ease forwards;
 }
 </style>

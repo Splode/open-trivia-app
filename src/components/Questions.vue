@@ -20,6 +20,9 @@ import { htmlEntity } from '.././htmlEntityMixin';
 export default {
   mixins: [htmlEntity],
   computed: {
+    aboutShow() {
+      return this.$store.state.aboutShow;
+    },
     choices() {
       return this.questions[this.round].choices;
     },
@@ -53,11 +56,19 @@ export default {
         this.$store.commit('pauseGame');
         this.$store.commit('incrementRound');
       }
+      // Close About menu if open
+      if (this.aboutShow) {
+        this.$store.commit('aboutToggle');
+      }
     },
     // Resolve answer
     answer(choice) {
       // Pause game state (effects buttons)
       this.$store.commit('pauseGame', 'pause');
+      // Close About menu if open
+      if (this.aboutShow) {
+        this.$store.commit('aboutToggle');
+      }
       // Apply button styles for correct / incorrect
       this.$store.commit('styleButtons');
       // Check for correct answer and score

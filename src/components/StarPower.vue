@@ -25,8 +25,6 @@ export default {
 <style lang="scss">@import ".././main.scss";
 @import url( 'https://fonts.googleapis.com/icon?family=Material+Icons');
 
-$color-yellow: #FDD835;
-
 // Star mixin for children
 // Pass in upper limit for random size (based on em)
 // Pass in timing for animation

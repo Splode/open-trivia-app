@@ -1,6 +1,8 @@
 <template lang="html">
 <div>
-  <p>Test your trivial knowledge. Play against a friend, or challenge yourself. 10 questions.</p>
+  <p>Test your trivial knowledge with 10 questions.
+  </br>
+    Play against a friend, or challenge yourself.</p>
 </div>
 </template>
 
@@ -12,7 +14,20 @@ export default {}
 @import ".././main.scss";
 
 div {
-  padding: 0 2em;
   margin: 0 0 1em 0;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+@media (max-width: 600px) {
+  div {
+    padding: 0 1em;
+  }
+
+  p {
+    font-size: 1.1em;
+  }
 }
 </style>
