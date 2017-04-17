@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    aboutShow: false,
+    aboutShow: false, // Show or hide About menu
     categories: [], // trivia categories
     currentCategory: { // chosen category
       name: 'Random',
@@ -17,8 +17,14 @@ export const store = new Vuex.Store({
     isPaused: false,
     round: 0, // round counter, starts at 0, ends at 9. Linked to display of current question
     scores: {
-      playerOne: 0,
-      playerTwo: 0,
+      playerOne: {
+        history: [],
+        total: 0,
+      },
+      playerTwo: {
+        history: [],
+        total: 0,
+      }
     },
     solo: true, // Game mode, solo or multiplayer?
     starPower: false, // show starPower animation
@@ -88,14 +94,6 @@ export const store = new Vuex.Store({
     incrementRound: state => {
       state.round += 1;
     },
-    // Increase player score upon correct answer
-    incrementScore: (state, payload) => {
-      if (payload === 'playerOne') {
-        state.scores.playerOne += 1;
-      } else {
-        state.scores.playerTwo += 1;
-      }
-    },
     // Restart game with default state
     newGame: state => {
       state.currentCategory.name = 'Random';
@@ -117,8 +115,26 @@ export const store = new Vuex.Store({
       state.isPaused = false;
       state.questions = [];
       state.round = 0;
-      state.scores.playerOne = 0;
-      state.scores.playerTwo = 0;
+      state.scores.playerOne.total = 0;
+      state.scores.playerTwo.total = 0;
+      state.scores.playerOne.history = [];
+      state.scores.playerTwo.history = [];
+    },
+    // Score after answering question
+    score: (state, payload) => {
+      let player = payload.mode;
+      if (payload.true) {
+        state.scores[player].history.push({
+          correct: true,
+          incorrect: false,
+        });
+        state.scores[player].total += 1;
+      } else {
+        state.scores[player].history.push({
+          correct: false,
+          incorrect: true,
+        });
+      }
     },
     // Set game mode from Starter.vue
     selectMode: (state, payload) => {
@@ -165,7 +181,6 @@ export const store = new Vuex.Store({
           el.choices[i] = el.choices[rand];
           el.choices[rand] = temp;
         }
-
       });
       // Set view to game board
       state.currentView = 'app-game-board';
