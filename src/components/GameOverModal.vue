@@ -1,18 +1,23 @@
 <template lang="html">
   <div class="modal fade-in">
     <div class="container slide-in">
+      <!-- Single player scores -->
       <div v-if="mode">
         <h1>Game Over!</h1>
-        <h2>Score: {{ scores.playerOne }}/10</h2>
+        <h2>Score: {{ scores.playerOne.total }}/10</h2>
         <p>{{ scoreMessage }}</p>
       </div>
+      <!-- Multiplayer scores -->
       <div v-if="!mode">
-        <h1 v-if="scores.playerOne > scores.playerTwo">Player One Wins!</h1>
-        <h1 v-if="scores.playerTwo > scores.playerOne">Player Two Wins!</h1>
-        <h1 v-if="scores.playerOne === scores.playerTwo">Draw!</h1>
-        <h2>Player One: <span :class="scores.playerOne >= scores.playerTwo ? 'score-high' : 'score-low'">{{ scores.playerOne }}</span></h2>
-        <h2>Player Two: <span :class="scores.playerTwo >= scores.playerOne ? 'score-high' : 'score-low'">{{ scores.playerTwo }}</span></h2>
+        <!-- Win conditions -->
+        <h1 v-if="scores.playerOne.total > scores.playerTwo.total">Player One Wins!</h1>
+        <h1 v-if="scores.playerTwo.total > scores.playerOne.total">Player Two Wins!</h1>
+        <h1 v-if="scores.playerOne.total === scores.playerTwo.total">Draw!</h1>
+        <!-- Results -->
+        <h2>Player One: <span :class="scores.playerOne.total >= scores.playerTwo.total ? 'score-high' : 'score-low'">{{ scores.playerOne.total }}</span></h2>
+        <h2>Player Two: <span :class="scores.playerTwo.total >= scores.playerOne.total ? 'score-high' : 'score-low'">{{ scores.playerTwo.total }}</span></h2>
       </div>
+      <!-- Restart game buttons -->
       <button @click="newGame(true)">New Game</button>
       <button v-if="!mode" @click="newGame(false)">Rematch!</button>
     </div>
@@ -43,7 +48,7 @@ export default {
         9: 'A regular trivia wiz. Nice work.',
         10: 'Holy snikes!! A perfect score! Excellent work.',
       };
-      let score = this.scores.playerOne;
+      let score = this.scores.playerOne.total;
       if (score) {
         return cases[score];
       } else {

@@ -139,10 +139,6 @@ export default {
 }
 
 .wrapper {
-  // align-items: center;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   height: 80vh; // NOTE: iOS browsers require explicit height
 }
 @keyframes drop-in {

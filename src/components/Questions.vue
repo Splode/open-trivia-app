@@ -71,19 +71,22 @@ export default {
       }
       // Apply button styles for correct / incorrect
       this.$store.commit('styleButtons');
+      // Check mode for payload
+      let mode;
+      if (this.mode || this.turn === 'playerOne') {
+        mode = 'playerOne';
+      } else if (this.turn === 'playerTwo') {
+        mode = 'playerTwo'
+      }
       // Check for correct answer and score
-      let payload;
       if (choice.answer) {
-        if (this.mode || this.turn === 'playerOne') {
-          payload = 'playerOne';
-        } else if (this.turn === 'playerTwo') {
-          payload = 'playerTwo'
-        }
-        // Increase score if correct
-        this.$store.commit('incrementScore', payload);
+        // Score correctly
+        this.$store.commit('score', {true, mode});
+        // Call down the stars!
         this.$store.dispatch('starPower');
       } else {
-        console.log('incorrect');
+        // Score incorrectly
+        this.$store.commit('score', {false, mode});
       }
       // Check if game is over
       this.$store.commit('isGameOver');
