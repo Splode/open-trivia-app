@@ -11,14 +11,6 @@ $color-green: #5CDB80;
 $color-red: #FF5593;
 $back-gradient: linear-gradient(to top, #4481eb 0%, #04befe 100%);
 
-@media (hover:hover) {
-  button:hover, button:active {
-    background-color: $color-med;
-    border: 2px solid $color-med;
-    color: $color-white;
-  }
-}
-
 body,
 ul {
     margin: 0;
@@ -94,6 +86,20 @@ h2 {
 
 ul {
     list-style-type: none;
+}
+
+@media (hover:hover) {
+  button:hover, button:active {
+    background-color: $color-med;
+    border: 2px solid $color-med;
+    color: $color-white;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: .85em;
+  }
 }
 
 .flex-center-col {

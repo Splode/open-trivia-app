@@ -22,6 +22,7 @@
     <!-- Primary page components -->
     <transition name="fade" mode="out-in">
       <component :is="currentView"></component>
+      <!-- show element to test loading state -->
       <!-- <app-loader></app-loader> -->
     </transition>
 
@@ -91,12 +92,6 @@ export default {
 <style lang="scss">@import "main.scss";
 
 $header-shrink-scale: .66;
-
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.75em;
-  }
-}
 
 body {
     background-color: #4481eb;
@@ -194,5 +189,9 @@ main {
 
 .expand-leave-active {
   animation: close .5s ease forwards;
+}
+
+
+@media (max-width: 600px) {
 }
 </style>

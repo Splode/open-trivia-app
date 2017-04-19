@@ -45,26 +45,7 @@ export default {
     incrementCounter(counter) {
       return counter += 1;
     },
-    toggle(value) {
-      return value = !value;
-    }
-  },
-  created() {
-    // TODO: refactor initial timing
-    setTimeout(() => {
-      if (this.counter >= this.message.length-1) {
-        this.counter = -1;
-      }
-      this.counter += 1;
-    }, 500)
-    setTimeout(() => {
-      this.show = true;
-    }, 2000)
-    setTimeout(() => {
-      this.show = false;
-    }, 5000)
-    // TODO: refactor loops
-    setInterval(() => {
+    loopMessage() {
       setTimeout(() => {
         if (this.counter >= this.message.length-1) {
           this.counter = -1;
@@ -73,10 +54,21 @@ export default {
       }, 500)
       setTimeout(() => {
         this.show = true;
-      }, 2000)
+      }, 1500)
       setTimeout(() => {
         this.show = false;
       }, 5000)
+    },
+    toggle(value) {
+      return value = !value;
+    }
+  },
+  created() {
+    // TODO: refactor initial timing
+    this.loopMessage();
+    // TODO: refactor loops
+    setInterval(() => {
+      this.loopMessage();
     }, 5000)
 
   }

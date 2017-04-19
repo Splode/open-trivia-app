@@ -71,26 +71,6 @@ export default {
 
 <style lang="scss" scoped>@import ".././main.scss";
 
-@media (hover:hover) {
-  button:hover {
-    background-color: $color-white;
-    border: 2px solid $color-med;
-    color: $color-med;
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    width: 85%;
-  }
-}
-
-@media (min-width: 600px) {
-  .container {
-    width: 500px;
-  }
-}
-
 button {
   background-color: $color-med;
   border: 2px solid $color-med;
@@ -147,6 +127,26 @@ h2 {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@media (hover:hover) {
+  button:hover {
+    background-color: $color-white;
+    border: 2px solid $color-med;
+    color: $color-med;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 85%;
+  }
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 500px;
   }
 }
 </style>
