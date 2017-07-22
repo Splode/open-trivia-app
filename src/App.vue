@@ -1,33 +1,33 @@
 <template>
   <!-- starPower hack for proper animation display on style binding -->
-<div class="container" :style="starPower">
-  <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
-
-  <div class="about-button" @click="aboutToggle">
-    <transition name="fade" mode="out-in">
-    <i class="material-icons icon-menu" v-if="!aboutShow" key="menu">menu</i>
-    <i class="material-icons icon-close" v-else key="close">close</i>
-  </transition>
+  <div class="container" :style="starPower">
+    <app-game-over-modal v-if="isGameOver"></app-game-over-modal>
+  
+    <div class="about-button" @click="aboutToggle">
+      <transition name="fade" mode="out-in">
+        <i class="material-icons icon-menu" v-if="!aboutShow" key="menu">menu</i>
+        <i class="material-icons icon-close" v-else key="close">close</i>
+      </transition>
+    </div>
+  
+    <main>
+      <header :class="classHeader">
+        <h1>Winsome Trivia</h1>
+      </header>
+  
+      <transition name="expand" mode="out-in">
+        <app-about v-if="aboutShow"></app-about>
+      </transition>
+  
+      <!-- Primary page components -->
+      <transition name="fade" mode="out-in">
+        <component :is="currentView"></component>
+        <!-- show element to test loading state -->
+        <!-- <app-loader></app-loader> -->
+      </transition>
+  
+    </main>
   </div>
-
-  <main>
-    <header :class="classHeader">
-      <h1>Winsome Trivia</h1>
-    </header>
-
-    <transition name="expand" mode="out-in">
-    <app-about v-if="aboutShow"></app-about>
-  </transition>
-
-    <!-- Primary page components -->
-    <transition name="fade" mode="out-in">
-      <component :is="currentView"></component>
-      <!-- show element to test loading state -->
-      <!-- <app-loader></app-loader> -->
-    </transition>
-
-  </main>
-</div>
 </template>
 
 <script>
@@ -89,40 +89,41 @@ export default {
 }
 </script>
 
-<style lang="scss">@import "main.scss";
+<style lang="scss">
+@import "main.scss";
 
 $header-shrink-scale: .66;
 
 body {
-    background-color: #4481eb;
-    background-image: $back-gradient;
-    background-repeat: no-repeat;
-    color: $color-white;
-    display: flex;
-    font-family: 'Quicksand', sans-serif;
-    height: 100vh;
-    justify-content: center;
-    text-align: center;
+  background-color: #4481eb;
+  background-image: $back-gradient;
+  background-repeat: no-repeat;
+  color: $color-white;
+  display: flex;
+  font-family: 'Quicksand', sans-serif;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
 }
 
 header {
-    //background-color: $color-darkest;
-    color: $color-white;
-    transform: scale(1);
-    //width: 100%;
+  //background-color: $color-darkest;
+  color: $color-white;
+  transform: scale(1); //width: 100%;
 }
 
-h1, p {
+h1,
+p {
   margin: 0;
 }
 
 main {
-    align-items: center;
-    animation: fade-in 1.5s ease; // defined in main.scss
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100%;
+  align-items: center;
+  animation: fade-in 1.5s ease; // defined in main.scss
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
 }
 
 .about-button {
@@ -142,10 +143,11 @@ main {
 }
 
 .container {
-    width: 100%;
+  width: 100%;
 }
 
-.icon-menu, .icon-close {
+.icon-menu,
+.icon-close {
   transition: all .3s ease;
 
   &:hover {
@@ -154,33 +156,33 @@ main {
 }
 
 .grow {
-    animation: grow 0.5s ease forwards;
-    //background-color: $color-dark;
+  animation: grow 0.5s ease forwards; //background-color: $color-dark;
 }
 
 .small {
-    animation: squeeze 0.5s ease forwards;
-    //background-color: $color-darkest;
+  animation: squeeze 0.5s ease forwards; //background-color: $color-darkest;
 }
+
 @keyframes grow {
-    from {
-        transform: scale($header-shrink-scale);
-        padding: 0.25em 0;
-    }
-    to {
-      transform: scale(1);
-        padding: 1em;
-    }
+  from {
+    transform: scale($header-shrink-scale);
+    padding: 0.25em 0;
+  }
+  to {
+    transform: scale(1);
+    padding: 1em;
+  }
 }
+
 @keyframes squeeze {
-    from {
-      transform: scale(1);
-        padding: 1em;
-    }
-    to {
-        transform: scale($header-shrink-scale);
-        padding: 0.5em 0;
-    }
+  from {
+    transform: scale(1);
+    padding: 1em;
+  }
+  to {
+    transform: scale($header-shrink-scale);
+    padding: 0.5em 0;
+  }
 }
 
 .expand-enter-active {
@@ -192,6 +194,5 @@ main {
 }
 
 
-@media (max-width: 600px) {
-}
+@media (max-width: 600px) {}
 </style>
