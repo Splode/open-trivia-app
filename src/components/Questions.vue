@@ -81,12 +81,12 @@ export default {
       // Check for correct answer and score
       if (choice.answer) {
         // Score correctly
-        this.$store.commit('score', {true, mode});
+        this.$store.commit('score', {true: true, mode});
         // Call down the stars!
         this.$store.dispatch('starPower');
       } else {
         // Score incorrectly
-        this.$store.commit('score', {false, mode});
+        this.$store.commit('score', {false: false, mode});
       }
       // Check if game is over
       this.$store.commit('isGameOver');
