@@ -1,5 +1,9 @@
 # Winsome Trivia
 
+<div align="center">
+  <img alt="Winsome Trivia screenshot" src=".github/winsome.png" width="800px">
+</div>
+
 > A single or multiplayer (local) trivia game made with featuring over 2,000 unique questions and built with Vue.js.
 
 ## About
