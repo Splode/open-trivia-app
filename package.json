@@ -3,6 +3,7 @@
   "description": "A single or multiplayer (local) trivia game made with Vue.js .",
   "version": "1.0.0",
   "author": "Christopher Murphy (christopherianmurphy@gmail.com)",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
