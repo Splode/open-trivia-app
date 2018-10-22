@@ -25,5 +25,7 @@ git clone
 
 ```npm run build```
 
+Questions to be added to a json file named data.json
+
 ## License
 MIT
