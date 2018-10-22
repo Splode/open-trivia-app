@@ -20,12 +20,38 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-  <title>Winsome Trivia</title>
+  <title>Trivia</title>
 </head>
 
 <body>
   <div id="app"></div>
   <script src="./dist/build.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var i = 0;
+    function sendScore(){
+      var targetNode = document.querySelector('.droplet-container');
+      var config = { attributes: true, childList: true, subtree: true };
+      var callback = function(mutationsList, observer) {
+        var score = document.querySelectorAll('i.droplet.correct').length;
+        console.log(score);
+        /*
+        axios.post('https://webhook.site/2798f031-4a37-4e94-9106-db32a6982a7a', {
+          firstName: 'Test',
+          lastName: score
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+        });
+        */
+        }
+      var observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
+    }
+  </script>
 </body>
 
 </html>
