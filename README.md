@@ -1,4 +1,4 @@
-#Trivia Clone
+# Trivia Clone
 
 This is a fork  of the SPlode.open-trivia-app
 
@@ -19,7 +19,10 @@ State is managed by [Vuex](https://github.com/vuejs/vuex). Database requests are
 
 ## Use
 
+git clone
+
 ```npm install```
+
 ```npm run build```
 
 ## License
