@@ -4,7 +4,7 @@
     @click="selectMode(true)"
     :class="mode ? 'active' : null"
     >Single Player</button>
-    <button
+    <button id="multi"
     @click="selectMode(false)"
     :class="!mode ? 'active' : null"
     >Multiplayer</button>
@@ -13,7 +13,7 @@
     <!-- Category dropdown selector -->
     <div class="dropdown" @click="dropdownToggle">
       <!-- dropdown label -->
-      <div class="dropdown-label">
+      <div id="categories" class="dropdown-label">
         <h2>Choose Category</h2>
         <!-- toggle expand icons -->
         <transition name="fade" mode="out-in">
@@ -21,7 +21,6 @@
           <i class="material-icons expand-less" v-else key="expand-less">expand_less</i>
         </transition>
       </div>
-      <h3>{{ currentCategory.name }}</h3>
       <ul :class="dropdownClass">
         <li @click="chooseCategory({ name: 'Random', id: 9 })">Random (default)</li>
         <li v-for="category in categories" @click="chooseCategory(category)">{{ category.name }}</li>
@@ -167,5 +166,8 @@ ul {
 // Close dropdown
 .close {
     animation: close 1s ease forwards;
+}
+#multi {
+  display:none;
 }
 </style>
