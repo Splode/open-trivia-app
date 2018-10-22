@@ -44,11 +44,12 @@ export const store = new Vuex.Store({
       context.state.currentView = 'app-loader';
       // Fetch batch of questions for specific category
       let api;
+      let dataUrl = 'data.json';
       // Determine if random (default) or chosen category
       if (context.state.currentCategory.name === 'Random') {
-        api = 'https://opentdb.com/api.php?amount=10';
+        api = dataUrl;
       } else {
-        api = 'https://opentdb.com/api.php?amount=10&category=' + context.state.currentCategory.id;
+        api = dataUrl;
       }
       Vue.http.get(api)
       .then(response => {
